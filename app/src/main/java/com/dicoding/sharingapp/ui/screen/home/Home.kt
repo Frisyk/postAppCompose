@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.testTag
 import com.dicoding.sharingapp.di.Injection
 import com.dicoding.sharingapp.ui.ViewModelFactory
 import com.dicoding.sharingapp.ui.common.UiState
+import com.dicoding.sharingapp.ui.components.BlankText
 import com.dicoding.sharingapp.ui.components.ListComponent
 import com.dicoding.sharingapp.ui.components.SearchBarComp
 
@@ -40,16 +41,20 @@ fun Home(
                         )
                     },
                 ) {
-                    ListComponent(
-                        postPhoto = uiState.data,
-                        modifier = modifier
-                            .padding(it)
-                            .testTag("PostList"),
-                        navigateToDetail = navigateToDetail,
-                        onClick = { postId ->
-                            viewModel.addPostToFav(postId)
-                        }
-                    )
+                    if (uiState.data.isNotEmpty()) {
+                        ListComponent(
+                            postPhoto = uiState.data,
+                            modifier = modifier
+                                .padding(it)
+                                .testTag("PostList"),
+                            navigateToDetail = navigateToDetail,
+                            onClick = { postId ->
+                                viewModel.addPostToFav(postId)
+                            }
+                        )
+                    } else {
+                        BlankText()
+                    }
                 }
 
             }

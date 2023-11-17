@@ -19,6 +19,7 @@ class FavoritesViewModel(
 
     fun getFavPost() {
         viewModelScope.launch {
+            _uiState.value = UiState.Loading
             repository.getFavoritePosts()
                 .catch {
                     _uiState.value = UiState.Error(it.message.toString())

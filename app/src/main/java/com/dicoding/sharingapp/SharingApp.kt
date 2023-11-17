@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.dicoding.sharingapp.ui.components.BottomBar
 import com.dicoding.sharingapp.ui.navigation.Screen
+import com.dicoding.sharingapp.ui.screen.camera.Camera
 import com.dicoding.sharingapp.ui.screen.details.DetailsPost
 import com.dicoding.sharingapp.ui.screen.favorites.Favorites
 import com.dicoding.sharingapp.ui.screen.home.Home
@@ -53,6 +54,9 @@ fun SharingApp (
                         navController.navigate(Screen.DetailsPost.createRoute(postId))
                     },
                 )
+            }
+            composable(Screen.Camera.route) {
+                Camera()
             }
             composable(Screen.Profile.route) {
                 User()
